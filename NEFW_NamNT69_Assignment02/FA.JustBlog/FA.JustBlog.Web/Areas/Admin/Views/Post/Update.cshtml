@@ -1,0 +1,76 @@
+﻿@using FA.JustBlog.ViewModels.Posts
+@using FA.JustBlog.ViewModels.Categories
+@using FA.JustBlog.Web.Areas.Admin.Controllers
+@model UpdatePostViewModel
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    var categories = TempData["Categories"] as List<CategoryViewModel>;
+    var post = TempData["Post"] as PostViewModel;
+    var tag = TempData["Tags"];
+}
+
+<h2>Update</h2>
+
+@*@Html.ValidationSummary()*@
+<form action="/Admin/Post/Update" method="post">
+    @Html.TextBoxFor(x => x.Id, new {@type = "hidden", @Value = post.Id})
+    <div class="mb-3">
+        @Html.LabelFor(x => x.Title, new { @class = "form-label" })
+        @Html.TextBoxFor(x => x.Title, new { @class = "form-control", onchange = "changeUrl('Title','UrlSlug')", @Value = post.Title })
+        @Html.ValidationMessageFor(x => x.Title, null, new { @class = "text-danger" })
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(x => x.UrlSlug, new { @class = "form-label" })
+        @Html.TextBoxFor(x => x.UrlSlug, new { @class = "form-control", @readonly = true, @Value = post.UrlSlug })
+        @Html.ValidationMessageFor(x => x.UrlSlug, null, new { @class = "text-danger" })
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(x => x.CategoryId, new { @class = "form-label" })
+        <select name="CategoryId" class="form-control">
+            <option disabled>Choose Category</option>
+            @foreach (var category in categories)
+            {
+                if (post.CategoryId == category.Id)
+                {
+                    <option selected value="@category.Id">@category.Name</option>
+                }
+                else
+                {
+                    <option value="@category.Id">@category.Name</option>
+                }
+            }
+        </select>
+        @Html.ValidationMessageFor(x => x.UrlSlug, null, new { @class = "text-danger" })
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(x => x.Published, new { @class = "form-label" })
+        @Html.TextBoxFor(x => x.Published, new { @class = "form-control", @Value = post.Published })
+        @Html.ValidationMessageFor(x => x.Published, null, new { @class = "text-danger" })
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(x => x.Tags, new { @class = "form-label" })
+        <textarea class="form-control" rows="2" name="Tags">@tag</textarea>
+        @Html.ValidationMessageFor(x => x.Tags, null, new { @class = "text-danger" })
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(x => x.ShortDescription, new { @class = "form-label" })
+        @Html.TextBoxFor(x => x.ShortDescription, new { @class = "form-control", @Value = post.ShortDescription })
+        @Html.ValidationMessageFor(x => x.ShortDescription, null, new { @class = "text-danger" })
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(x => x.PostContent, new { @class = "form-label" })
+        <textarea class="form-control" id="editor" rows="5" name="PostContent">
+            @Html.Raw(post.PostContent)
+        </textarea>
+        @Html.ValidationMessageFor(x => x.PostContent, null, new { @class = "text-danger" })
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(x => x.Status, new { @class = "form-label" })
+        <small>If you update Status auto become InActive</small>
+        @Html.TextBoxFor(x => x.Status, new { @class = "form-control", @Value = post.Status, @readonly = true })
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-warning">Update</button>
+    </div>
+</form>

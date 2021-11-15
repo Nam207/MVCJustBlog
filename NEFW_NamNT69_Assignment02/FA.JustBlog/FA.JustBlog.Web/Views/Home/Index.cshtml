@@ -1,0 +1,46 @@
+﻿@using FA.JustBlog.ViewModels.Posts
+@model IEnumerable<PostShortViewModel>
+
+@{
+    ViewBag.Title = "Just Blog";
+}
+
+<header class="masthead" style="background-image: url('../../img/home-bg.jpg');">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1>@ViewBag.Title</h1>
+                    <span class="subheading">A Blog Theme by Start Bootstrap</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container body-content">
+    <div class="row">
+        @foreach (var post in Model)
+        {
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="post-preview">
+                    <a href="@Url.Action("Index", "Post", new { id = post.Id})">
+                        <h2 class="post-title">@post.Title</h2>
+                        @if (!string.IsNullOrEmpty(post.ShortDescription))
+                        {
+                            <h3 class="post-subtitle">
+                                @post.ShortDescription
+                            </h3>
+                        }
+                    </a>
+                    <p class="post-meta">
+                        Posted by
+                        <a href="@Url.Action("Index", "Home", new { pub = post.Published})">@post.Published</a>
+                        on <span>@post.PostedOn</span>
+                    </p>
+                </div>
+            </div>
+        }
+    </div>
+</div>

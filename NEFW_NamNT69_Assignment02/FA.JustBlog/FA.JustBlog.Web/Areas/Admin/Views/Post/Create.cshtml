@@ -1,0 +1,59 @@
+﻿@using FA.JustBlog.ViewModels.Posts
+@using FA.JustBlog.ViewModels.Categories
+@using FA.JustBlog.Web.Areas.Admin.Controllers
+@model CreatePostViewModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    var categories = TempData["Categories"] as List<CategoryViewModel>;
+}
+
+<h2>Create</h2>
+
+@*@Html.ValidationSummary()*@
+<form action="/Admin/Post/Create" method="post">
+    <div class="mb-3">
+        @Html.LabelFor(x => x.Title, new { @class = "form-label" })
+        @Html.TextBoxFor(x => x.Title, new { @class = "form-control", onchange = "changeUrl('Title','UrlSlug')" })
+        @Html.ValidationMessageFor(x => x.Title, null, new { @class = "text-danger" })
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(x => x.UrlSlug, new { @class = "form-label" })
+        @Html.TextBoxFor(x => x.UrlSlug, new { @class = "form-control", @readonly = true })
+        @Html.ValidationMessageFor(x => x.UrlSlug, null, new { @class = "text-danger" })
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(x => x.CategoryId, new { @class = "form-label" })
+        <select name="CategoryId" class="form-control">
+            <option disabled>Choose Category</option>
+            @foreach (var category in categories)
+            {
+                <option value="@category.Id">@category.Name</option>
+            }
+        </select>
+        @Html.ValidationMessageFor(x => x.UrlSlug, null, new { @class = "text-danger" })
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(x => x.Published, new { @class = "form-label" })
+        @Html.TextBoxFor(x => x.Published, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Published, null, new { @class = "text-danger" })
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(x => x.Tags, new { @class = "form-label" })
+        @Html.TextAreaFor(x => x.Tags, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Tags, null, new { @class = "text-danger" })
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(x => x.ShortDescription, new { @class = "form-label" })
+        @Html.TextBoxFor(x => x.ShortDescription, new { @class = "form-control"})
+        @Html.ValidationMessageFor(x => x.ShortDescription, null, new { @class = "text-danger" })
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(x => x.PostContent, new { @class = "form-label" })
+        @Html.TextAreaFor(x => x.PostContent, new { @class = "form-control", id = "editor", rows = 5 })
+        @Html.ValidationMessageFor(x => x.PostContent, null, new { @class = "text-danger" })
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-warning">Submit</button>
+    </div>
+</form>

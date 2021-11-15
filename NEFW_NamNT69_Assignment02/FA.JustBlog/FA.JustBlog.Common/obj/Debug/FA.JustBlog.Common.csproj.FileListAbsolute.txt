@@ -1,0 +1,6 @@
+C:\Users\nam\Desktop\NEFW_NamNT69_Assignment02\FA.JustBlog\FA.JustBlog.Common\bin\Debug\FA.JustBlog.Common.dll
+C:\Users\nam\Desktop\NEFW_NamNT69_Assignment02\FA.JustBlog\FA.JustBlog.Common\bin\Debug\FA.JustBlog.Common.pdb
+C:\Users\nam\Desktop\NEFW_NamNT69_Assignment02\FA.JustBlog\FA.JustBlog.Common\obj\Debug\FA.JustBlog.Common.csproj.CoreCompileInputs.cache
+C:\Users\nam\Desktop\NEFW_NamNT69_Assignment02\FA.JustBlog\FA.JustBlog.Common\obj\Debug\FA.JustBlog.Common.dll
+C:\Users\nam\Desktop\NEFW_NamNT69_Assignment02\FA.JustBlog\FA.JustBlog.Common\obj\Debug\FA.JustBlog.Common.pdb
+C:\Users\nam\Desktop\NEFW_NamNT69_Assignment02\FA.JustBlog\FA.JustBlog.Common\obj\Debug\FA.JustBlog.Common.csproj.AssemblyReference.cache

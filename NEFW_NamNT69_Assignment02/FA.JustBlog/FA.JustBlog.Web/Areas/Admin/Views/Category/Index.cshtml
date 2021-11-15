@@ -1,0 +1,38 @@
+﻿@using FA.JustBlog.ViewModels.Categories;
+@using FA.JustBlog.Web.Areas.Admin.Controllers
+@model IEnumerable<CategoryViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>@TempData["Message"]</h2>
+
+<table class="table table-bordered table-hover">
+    <tr>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var category in Model)
+    {
+        <tr>
+            <td>@category.Id</td>
+            <td>@category.Name</td>
+            <td>@category.Status</td>
+            <td class="text-center">
+                <a href="@Url.Action("Update", "Category", new { id = category.Id})"><i class="bi bi-pencil-square"></i></a>
+                <a href="@Url.Action("Detail", "Category", new { id = category.Id})"><i class="bi bi-info-square"></i></a>
+                <a href="@Url.Action("Delete", "Category", new { id = category.Id})"><i class="bi bi-trash"></i></a>
+            </td>
+        </tr>
+    }
+</table>

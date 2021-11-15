@@ -1,0 +1,55 @@
+﻿@using FA.JustBlog.ViewModels.Posts
+@using FA.JustBlog.ViewModels.Categories
+@using FA.JustBlog.Web.Areas.Admin.Controllers
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    var categories = TempData["Categories"] as List<CategoryViewModel>;
+    var post = TempData["Post"] as PostViewModel;
+    var tag = TempData["Tags"];
+}
+
+<h2>Detail</h2>
+
+<div class="mb-3">
+    <h2>Id: </h2>
+    <p>@post.Id</p>
+</div>
+<div class="mb-3">
+    <h2>Title: </h2>
+    <h3>@post.Title</h3>
+</div>
+<div class="mb-3">
+    <h2>UrlSlug: </h2>
+    <p>@post.UrlSlug</p>
+</div>
+<div class="mb-3">
+    <h2>Category: </h2>
+    @foreach (var element in categories)
+    {
+        if (element.Id == post.CategoryId)
+        {
+            <p>@element.Name</p>
+        }
+    }
+</div>
+<div class="mb-3">
+    <h2>Published: </h2>
+    <p>@post.Published</p>
+</div>
+<div class="mb-3">
+    <h2>Tags: </h2>
+    <p>@tag</p>
+</div>
+<div class="mb-3">
+    <h2>ShortDescription: </h2>
+    <p>@post.ShortDescription</p>
+</div>
+<div class="mb-3">
+    <h2>PostContent: </h2>
+    <p>@post.PostContent</p>
+</div>
+<div class="mb-3">
+    <h2>Status: </h2>
+    <p>@post.Status</p>
+</div>

@@ -1,0 +1,33 @@
+﻿
+@using FA.JustBlog.ViewModels.Categories
+@using FA.JustBlog.Web.Areas.Admin.Controllers
+@model CreateCategoryViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Create Category</h2>
+
+@*@Html.ValidationSummary()*@
+<form action="/Admin/Category/Create" method="post">
+    <div class="mb-3">
+        @Html.LabelFor(x => x.Name, new { @class = "form-label"})
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control", onchange = "changeUrl('Name','UrlSlug')" })
+        @Html.ValidationMessageFor(x => x.Name, null, new { @class = "text-danger" })
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(x => x.UrlSlug, new { @class = "form-label" })
+        @Html.TextBoxFor(x => x.UrlSlug, new { @class = "form-control", @readonly = true })
+        @Html.ValidationMessageFor(x => x.UrlSlug, null, new { @class = "text-danger" })
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(x => x.Description, new { @class = "form-label" })
+        @Html.TextAreaFor(x => x.Description, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Description, null, new { @class = "text-danger" })
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-warning">Submit</button>
+    </div>
+</form>

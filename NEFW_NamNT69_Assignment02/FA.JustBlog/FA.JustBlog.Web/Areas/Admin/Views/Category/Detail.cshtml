@@ -1,0 +1,31 @@
+﻿
+@using FA.JustBlog.ViewModels.Categories
+@using FA.JustBlog.Web.Areas.Admin.Controllers
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    var category = TempData["Category"] as UpdateCategoryViewModel;
+}
+
+<h2>Detail</h2>
+
+<div class="mb-3">
+    <h2>Id: </h2>
+    <p>@category.Id</p>
+</div>
+<div class="mb-3">
+    <h2>Name: </h2>
+    <h3>@category.Name</h3>
+</div>
+<div class="mb-3">
+    <h2>UrlSlug: </h2>
+    <p>@category.UrlSlug</p>
+</div>
+<div class="mb-3">
+    <h2>PostContent: </h2>
+    <p>@category.Description</p>
+</div>
+<div class="mb-3">
+    <h2>Status: </h2>
+    <p>@category.Status</p>
+</div>

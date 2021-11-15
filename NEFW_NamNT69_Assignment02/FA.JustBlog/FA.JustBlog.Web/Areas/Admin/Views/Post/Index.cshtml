@@ -1,0 +1,36 @@
+﻿@using FA.JustBlog.ViewModels.Posts;
+@using FA.JustBlog.Web.Areas.Admin.Controllers
+@model IEnumerable<PostShortViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>@TempData["Message"]</h2>
+
+<table class="table table-bordered table-hover">
+    <tr>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var post in Model)
+    {
+        <tr>
+            <td>@post.Id</td>
+            <td>@post.Title</td>
+            <td>@post.Status</td>
+            <td class="text-center">
+                <a href="@Url.Action("Update", "Post", new { id = post.Id})"><i class="bi bi-pencil-square"></i></a>
+                <a href="@Url.Action("Detail", "Post", new { id = post.Id})"><i class="bi bi-info-square"></i></a>
+                <a href="@Url.Action("Delete", "Post", new { id = post.Id})"><i class="bi bi-trash"></i></a>
+            </td>
+        </tr>
+    }
+</table>
